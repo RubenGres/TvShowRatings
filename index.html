@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link href="style.css" rel="stylesheet"></link>
+    </head>
+
+    <body ng-app="ToDoList">
+        <div ng-controller="mainCont" class="center">
+
+            <input ng-model="showName" ng-keypress="inputKeypress($event)" placeholder="Breaking Bad">
+            <button ng-click='click()'> OK </button>
+
+            <div class="desc">                
+                <img  ng-src="{{poster}}"></img>
+            </div>
+
+            <table id="score_table">
+                <tr>
+                    <td></td>
+                    <td ng-repeat="n in episodes">E{{n}}</td>
+                </tr>
+
+                <tr ng-repeat="season in scores track by $index">
+                    <td>S{{$index+1}}</td>
+                    <td ng-repeat="ep in season track by $index" class="ratingColor CellWithComment" title="title"> 
+                        {{ep[0]}}
+                        <span class="CellComment">{{ep[1]}}</span>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        
+        <script src="mainCont.js"></script>
+    </body>
+</html>
