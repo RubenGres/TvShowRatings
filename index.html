@@ -8,7 +8,7 @@
         <link href="style.css" rel="stylesheet"></link>
     </head>
 
-    <body ng-app="ToDoList">
+    <body ng-app="TvShowRating">
         <div ng-controller="mainCont" class="center">
 
             <input ng-model="showName" ng-keypress="inputKeypress($event)" placeholder="Breaking Bad">
@@ -18,6 +18,8 @@
                 <img  ng-src="{{poster}}"></img>
             </div>
 
+            <div class="center plot">{{plot}}</div>
+
             <table id="score_table">
                 <tr>
                     <td></td>
@@ -26,7 +28,8 @@
 
                 <tr ng-repeat="season in scores track by $index">
                     <td>S{{$index+1}}</td>
-                    <td ng-repeat="ep in season track by $index" class="ratingColor CellWithComment" title="title"> 
+                    <td ng-repeat="ep in season track by $index" class="ratingColor CellWithComment"
+                    ng-click="gotoIMDB(ep)">
                         {{ep[0]}}
                         <span class="CellComment">{{ep[1]}}</span>
                     </td>

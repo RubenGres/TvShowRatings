@@ -1,4 +1,4 @@
-var app = angular.module('ToDoList', []);
+var app = angular.module('TvShowRating', []);
 var omdbkey = 'e011453f' //6f73b15c
 
 
@@ -20,6 +20,10 @@ app.controller('mainCont', ['$scope', function($scope) {
         if (event.keyCode == 13 || event.which == 13){
             newShow();
         }
+    }
+
+    $scope.gotoIMDB = function(ep){
+        location.href='https://www.imdb.com/title/' + ep[2];
     }
 
     function newShow() {
@@ -50,7 +54,6 @@ app.controller('mainCont', ['$scope', function($scope) {
 
                 for(var season = 1; season <= response.totalSeasons; season++) {
                     reqString = 'https://www.omdbapi.com/?t=' + encodeURI($scope.showName) + '&season=' + season + '&apikey=' + omdbkey
-                    console.log(reqString);
                     newSeason(reqString, postSeasons);
                 }
 
@@ -75,7 +78,7 @@ app.controller('mainCont', ['$scope', function($scope) {
         $.getJSON(reqString).then(function(response) {
             epScores = {};
 			$.each(response.Episodes, function(i, item) {
-                epScores[item.Episode] = [item.imdbRating, item.Title];
+                epScores[item.Episode] = [item.imdbRating, item.Title, item.imdbID];
             });
             scoresDict[response.Season] = epScores;
             
@@ -110,7 +113,7 @@ app.controller('mainCont', ['$scope', function($scope) {
 }]);
 
 function colorCells() {
-    var colors = ["#dc0000","#dc0000","#dc0000","#dc2c00","#dc5800","#dc8400","#dcb000","#dcdc00","#84dc00","#2cdc00"];
+    var colors = ["#dc0000","#dc0000","#dc0000","#dc2c00","#dc5800","#dc8400","#dcb000","#dcdc00","#84dc00","#2cdc00", "#2cdc00"];
 
     $('#score_table td.ratingColor').each(function(){
 

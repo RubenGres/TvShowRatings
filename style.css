@@ -14,6 +14,11 @@ table, th, td {
   flex-direction: column;
 }
 
+.plot {
+  max-width: 500px;
+  text-align: justify;
+}
+
 td {
   width: 30px;
   height: 30px;
